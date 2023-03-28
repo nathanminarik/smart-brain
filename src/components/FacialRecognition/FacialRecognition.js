@@ -15,9 +15,10 @@ export const FacialRecognition = ({ imageUrl, boxes }) => {
           height="auto"
         ></img>
         {boxes &&
-          boxes.map((box) => (
+          boxes.map((box, idx) => (
             <div
               className="bounding-box"
+              key={idx}
               style={{
                 top: box.topRow,
                 right: box.rightCol,

@@ -4,7 +4,7 @@ export const useClarafaiRequestOptions = () => {
   const APP_ID = 'smart-brain';
   const MODEL_ID = 'face-detection';
 
-  const fetchFaceDetection = async (imageUrl) => {
+  const fetchFaceDetection = (imageUrl) => {
     const raw = JSON.stringify({
       user_app_id: {
         user_id: USER_ID,

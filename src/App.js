@@ -16,10 +16,7 @@ function App() {
   const [errorStateObject, setErrorStateObject] = useState(undefined);
 
   const { fetchFaceDetection } = useClarafaiRequestOptions();
-  const {
-    getFaceLocationDimensions,
-    getRegionsFaceLoacationDimensions,
-  } = useCalculateFaceLocations();
+  const { getRegionsFaceLoacationDimensions } = useCalculateFaceLocations();
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -27,7 +24,7 @@ function App() {
   };
 
   const onButtonSubmit = async () => {
-    const { error, outputs, status } = await fetchFaceDetection(input);
+    const { error, outputs } = await fetchFaceDetection(input);
     if (error) {
       return setErrorStateObject(error);
     }

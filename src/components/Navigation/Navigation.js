@@ -1,9 +1,31 @@
 import React from 'react';
+import { NavigationItem } from './NaviagtionItem';
 
-export const Navigation = () => {
-  return (
-    <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <p className="f3 link dim black underline pa3 pointer">Sign Out</p>
-    </nav>
-  );
+export const Navigation = ({ onRouteChange, route }) => {
+  switch (route) {
+    case 'home':
+      return (
+        <NavigationItem
+          onRouteChange={onRouteChange}
+          label={'Sign Out'}
+          routeToGoto={'signin'}
+        />
+      );
+    case 'register':
+      return (
+        <NavigationItem
+          onRouteChange={onRouteChange}
+          label={'Sign In'}
+          routeToGoto={'signin'}
+        />
+      );
+    default:
+      return (
+        <NavigationItem
+          onRouteChange={onRouteChange}
+          label={'Register'}
+          routeToGoto={'register'}
+        />
+      );
+  }
 };

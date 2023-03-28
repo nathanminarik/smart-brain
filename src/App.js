@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import ParticlesBg from 'particles-bg';
 import './App.css';
-import { Navigation } from './components/Navigation/Navigation';
-import { Logo } from './components/Logo/Logo';
-import { ImageLinkForm } from './components/ImageLinkForm/ImageLinkForm';
-import { Rank } from './components/Rank/Rank';
-import { FacialRecognition } from './components/FacialRecognition/FacialRecognition';
-import { ErrorMessage } from './components/ErrorMessage/ErrorMessage';
+import { HomePage, NavigationBar, RegisterPage, SignInPage } from './app-frame';
 import { useClarafaiRequestOptions } from './hooks/use-create-clarafai-request-options';
 import { useCalculateFaceLocations } from './hooks/use-calculate-face-location';
 
@@ -14,6 +9,7 @@ function App() {
   const [input, setInput] = useState();
   const [boxes, setBoxes] = useState();
   const [errorStateObject, setErrorStateObject] = useState(undefined);
+  const [route, setRoute] = useState('signin');
 
   const { fetchFaceDetection } = useClarafaiRequestOptions();
   const { getRegionsFaceLoacationDimensions } = useCalculateFaceLocations();
@@ -37,20 +33,36 @@ function App() {
     setBoxes(faceBoxSets);
   };
 
+  const onRouteChange = (route) => setRoute(route);
+
+  const renderNavBar = ({ route }) => (
+    <NavigationBar route={route} onRouteChange={onRouteChange} />
+  );
+
+  const renderPage = ({ route }) => {
+    switch (route) {
+      case 'register':
+        return <RegisterPage onRouteChange={onRouteChange} />;
+      case 'home':
+        return (
+          <HomePage
+            onInputChange={onInputChange}
+            onButtonSubmit={onButtonSubmit}
+            errorStateObject={errorStateObject}
+            boxes={boxes}
+            input={input}
+          />
+        );
+      default:
+        return <SignInPage onRouteChange={onRouteChange} />;
+    }
+  };
+
   return (
     <div className="App">
-      <ParticlesBg type="tadpole" bg={true} />
-      <Navigation></Navigation>
-      <Logo></Logo>
-      <Rank></Rank>
-      <ImageLinkForm
-        onInputChange={onInputChange}
-        onButtonSubmit={onButtonSubmit}
-      ></ImageLinkForm>
-      {errorStateObject && (
-        <ErrorMessage error={errorStateObject}></ErrorMessage>
-      )}
-      <FacialRecognition boxes={boxes} imageUrl={input}></FacialRecognition>
+      <ParticlesBg type="cobweb" bg={true} />
+      {renderNavBar({ route })}
+      {renderPage({ route })}
     </div>
   );
 }

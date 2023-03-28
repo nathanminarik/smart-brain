@@ -16,7 +16,6 @@ export const useCalculateFaceLocations = () => {
     regions.map((region) => getFaceLocationDimensions(region, portalRoot));
 
   return {
-    getFaceLocationDimensions,
     getRegionsFaceLoacationDimensions,
   };
 };

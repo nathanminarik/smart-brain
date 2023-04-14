@@ -4,7 +4,7 @@ import { NavigationContext } from './../context';
 export const useNavigation = () => {
   const [currentPage, setCurrentPage] = useContext(NavigationContext);
 
-  const linkToPage = (newPage) => setCurrentPage(newPage);
+  const navigate = (newPage) => setCurrentPage(newPage);
 
-  return [currentPage, linkToPage];
+  return [currentPage, navigate];
 };

@@ -2,17 +2,15 @@ import React from 'react';
 import { useNavigation } from '../../hooks';
 
 export const NavigationItem = ({ label, pageToGoto }) => {
-  const [, setPage] = useNavigation();
+  const [, navigate] = useNavigation();
   return (
-    <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <p
-        onClick={() => {
-          setPage(pageToGoto);
-        }}
-        className="f3 link dim black underline pa3 pointer"
-      >
-        {label}
-      </p>
-    </nav>
+    <button
+      className="f6 link dim ba bw1 ph3 pv2 mb2 dib mid-gray pointer mr2 ml2"
+      onClick={() => {
+        navigate(pageToGoto);
+      }}
+    >
+      {label}
+    </button>
   );
 };

@@ -6,7 +6,7 @@ import { NavigationBar } from './../navigation-bar';
 import { useNavigation } from './../../hooks';
 
 export const Application = () => {
-  const [page] = useNavigation('signin');
+  const [page] = useNavigation();
 
   useEffect(() => {
     fetch('http://localhost:3000')
@@ -15,7 +15,7 @@ export const Application = () => {
       .catch(console.log);
   }, []);
 
-  const renderNavBar = () => <NavigationBar />;
+  const renderNavBar = () => <NavigationBar className="mt2 mb2" />;
 
   const renderPage = ({ page }) => {
     switch (page) {
@@ -31,7 +31,7 @@ export const Application = () => {
   return (
     <div className="App">
       <ParticlesBg type="cobweb" bg={true} />
-      {renderNavBar({ page })}
+      {renderNavBar()}
       {renderPage({ page })}
     </div>
   );

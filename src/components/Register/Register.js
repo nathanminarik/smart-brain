@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '../../hooks';
 
 export const Register = () => {
-  const [, setRoute] = useNavigation();
+  const [, navigate] = useNavigation();
   return (
     <div className="pa6 black-80">
       <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center pa3">
@@ -44,7 +44,7 @@ export const Register = () => {
           </fieldset>
           <div className="">
             <input
-              onClick={() => setRoute('home')}
+              onClick={() => navigate('home')}
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Register"

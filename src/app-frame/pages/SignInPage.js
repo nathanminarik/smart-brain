@@ -1,6 +1,4 @@
 import React from 'react';
-import { SignIn } from './../../components/SignIn/SignIn';
+import { SignIn } from './../../components';
 
-export const SignInPage = ({ onRouteChange }) => (
-  <SignIn onRouteChange={onRouteChange} />
-);
+export const SignInPage = () => <SignIn />;

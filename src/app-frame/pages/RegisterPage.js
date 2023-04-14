@@ -1,6 +1,4 @@
 import React from 'react';
-import { Register } from './../../components/Register/Register';
+import { Register } from './../../components';
 
-export const RegisterPage = ({ onRouteChange }) => (
-  <Register onRouteChange={onRouteChange} />
-);
+export const RegisterPage = () => <Register />;

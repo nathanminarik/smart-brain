@@ -1,6 +1,15 @@
 import React from 'react';
-import { Navigation } from './../../components/Navigation/Navigation';
+import { NavigationItem } from './../../components';
+import { useNavigation } from '../../hooks';
 
-export const NavigationBar = ({ onRouteChange, route }) => (
-  <Navigation onRouteChange={onRouteChange} route={route}></Navigation>
-);
+export const NavigationBar = () => {
+  const [page] = useNavigation();
+  switch (page) {
+    case 'home':
+      return <NavigationItem label={'Sign Out'} pageToGoto={'signin'} />;
+    case 'register':
+      return <NavigationItem label={'Sign In'} pageToGoto={'signin'} />;
+    default:
+      return <NavigationItem label={'Register'} pageToGoto={'register'} />;
+  }
+};

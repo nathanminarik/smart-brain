@@ -1,2 +1,1 @@
-export * from './navigation-bar';
-export * from './pages';
+export { Application } from './application';

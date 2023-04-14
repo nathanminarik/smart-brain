@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { ErrorMessage } from './../../components/ErrorMessage/ErrorMessage';
-import { ImageLinkForm } from './../../components/ImageLinkForm/ImageLinkForm';
-import { Logo } from './../../components/Logo/Logo';
-import { Rank } from './../../components/Rank/Rank';
-import { FacialRecognition } from './../../components/FacialRecognition/FacialRecognition';
-import { useClarafaiRequestOptions } from './../../hooks/use-create-clarafai-request-options';
-import { useCalculateFaceLocations } from './../../hooks/use-calculate-face-location';
+import {
+  ErrorMessage,
+  ImageLinkForm,
+  Logo,
+  Rank,
+  FacialRecognition,
+} from './../../components';
+
+import {
+  useClarafaiRequestOptions,
+  useCalculateFaceLocations,
+} from './../../hooks';
 
 export const HomePage = () => {
   const [input, setInput] = useState();

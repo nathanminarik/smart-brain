@@ -1,11 +1,8 @@
 import React from 'react';
 import { useForm, useNavigation, useUser } from '../../hooks';
-import { EndPoints, Routes } from './../../constants';
+import { Environments, EndPoints, Routes, FormInputs } from './../../constants';
 
-const inputFields = [
-  { id: 'email-address', type: 'email', name: 'email', label: 'Email' },
-  { id: 'password', type: 'password', name: 'password', label: 'Password' },
-];
+const inputFields = [FormInputs.Email, FormInputs.Password];
 
 export const SignIn = () => {
   const [, navigate] = useNavigation();
@@ -14,7 +11,7 @@ export const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/${EndPoints.POST.Signin}`, {
+    fetch(Environments.Local + EndPoints.POST.Signin, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -23,8 +20,10 @@ export const SignIn = () => {
     })
       .then((res) => res.json())
       .then((user) => {
+        if (!user || !user.id) {
+          throw Error('User not found');
+        }
         setUser(user);
-        console.log({ user, route: Routes.Home });
         navigate(Routes.Home);
       })
       .catch(console.log);

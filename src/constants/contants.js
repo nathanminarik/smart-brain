@@ -1,3 +1,4 @@
+// Do not include a leading /
 export const Routes = {
   Signin: 'signin',
   Home: 'home',
@@ -17,7 +18,11 @@ export const FormInputs = {
 
 export const EndPoints = {
   POST: {
-    Signin: 'signin',
-    Register: 'register',
+    Signin: '/signin',
+    Register: '/register',
   },
+};
+
+export const Environments = {
+  Local: 'http://localhost:3000',
 };

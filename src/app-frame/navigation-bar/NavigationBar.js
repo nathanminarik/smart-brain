@@ -9,14 +9,11 @@ export const NavigationBar = () => {
 
   const generateClickHandler = (pageToGoto, clearUser) => (e) => {
     e.preventDefault();
-    if (clearUser) {
-      console.log({ clearUser });
-      setUser(undefined);
-    }
-
+    clearUser && setUser(undefined);
     navigate(pageToGoto);
   };
-  const populateNavLinks = () => {
+
+  const renderNavLinks = () => {
     switch (page) {
       case 'home':
         return (
@@ -47,7 +44,7 @@ export const NavigationBar = () => {
       className="mb2 mt2"
       style={{ display: 'flex', justifyContent: 'flex-end' }}
     >
-      {populateNavLinks()}
+      {renderNavLinks()}
     </nav>
   );
 };

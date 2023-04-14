@@ -1,11 +1,8 @@
 import React from 'react';
 import { useForm, useNavigation, useUser } from '../../hooks';
+import { EndPoints, Environments, FormInputs, Routes } from '../../constants';
 
-const inputFields = [
-  { id: 'name', type: 'name', name: 'name', label: 'Name' },
-  { id: 'email-address', type: 'email', name: 'email', label: 'Email' },
-  { id: 'password', type: 'password', name: 'password', label: 'Password' },
-];
+const inputFields = [FormInputs.Name, FormInputs.Email, FormInputs.Password];
 
 export const Register = () => {
   const [, navigate] = useNavigation();
@@ -14,7 +11,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:3000/register', {
+    fetch(Environments.Local + EndPoints.POST.Register, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +20,7 @@ export const Register = () => {
     })
       .then((res) => res.json())
       .then((user) => setUser(user))
-      .then(() => navigate('home'))
+      .then(() => navigate(Routes.Home))
       .catch(console.log);
   };
 
@@ -36,7 +33,7 @@ export const Register = () => {
               <legend className="f1  fw6 ph0 mh0">Register</legend>
               <div className="mt3">{Inputs}</div>
             </fieldset>
-            <div className="">
+            <div>
               <button
                 onClick={handleSubmit}
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"

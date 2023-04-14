@@ -20,7 +20,6 @@ export const HomePage = () => {
   const { fetchFaceDetection } = useClarafaiRequestOptions();
   const { getRegionsFaceLoacationDimensions } = useCalculateFaceLocations();
   const [user] = useUser();
-  console.log({ user });
 
   const onButtonSubmit = async () => {
     const { error, outputs } = await fetchFaceDetection(input);

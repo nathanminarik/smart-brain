@@ -10,6 +10,7 @@ import {
 import {
   useClarafaiRequestOptions,
   useCalculateFaceLocations,
+  useUser,
 } from './../../hooks';
 
 export const HomePage = () => {
@@ -18,6 +19,8 @@ export const HomePage = () => {
   const [errorStateObject, setErrorStateObject] = useState(undefined);
   const { fetchFaceDetection } = useClarafaiRequestOptions();
   const { getRegionsFaceLoacationDimensions } = useCalculateFaceLocations();
+  const [user] = useUser();
+  console.log({ user });
 
   const onButtonSubmit = async () => {
     const { error, outputs } = await fetchFaceDetection(input);

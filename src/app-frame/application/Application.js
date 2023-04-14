@@ -29,6 +29,7 @@ export const Application = () => {
   };
 
   return (
+    // For application context providers goto: './../../App.js'
     <div className="App">
       <ParticlesBg type="cobweb" bg={true} />
       {renderNavBar()}

@@ -1,17 +1,44 @@
 import React from 'react';
 import { NavigationItem } from './../../components';
-import { useNavigation } from '../../hooks';
+import { useNavigation, useUser } from '../../hooks';
+import { Routes } from '../../constants';
 
 export const NavigationBar = () => {
-  const [page] = useNavigation();
+  const [page, navigate] = useNavigation();
+  const [, setUser] = useUser();
+
+  const generateClickHandler = (pageToGoto, clearUser) => (e) => {
+    e.preventDefault();
+    if (clearUser) {
+      console.log({ clearUser });
+      setUser(undefined);
+    }
+
+    navigate(pageToGoto);
+  };
   const populateNavLinks = () => {
     switch (page) {
       case 'home':
-        return <NavigationItem label={'Sign Out'} pageToGoto={'signin'} />;
+        return (
+          <NavigationItem
+            label={'Sign Out'}
+            clickHandler={generateClickHandler(Routes.Signin, true)}
+          />
+        );
       case 'register':
-        return <NavigationItem label={'Sign In'} pageToGoto={'signin'} />;
+        return (
+          <NavigationItem
+            label={'Sign In'}
+            clickHandler={generateClickHandler(Routes.Signin)}
+          />
+        );
       default:
-        return <NavigationItem label={'Register'} pageToGoto={'register'} />;
+        return (
+          <NavigationItem
+            label={'Register'}
+            clickHandler={generateClickHandler(Routes.Register)}
+          />
+        );
     }
   };
 

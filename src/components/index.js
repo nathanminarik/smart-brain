@@ -1,6 +1,7 @@
 export { ErrorMessage } from './ErrorMessage/ErrorMessage';
 export { FacialRecognition } from './FacialRecognition/FacialRecognition';
 export { ImageLinkForm } from './ImageLinkForm/ImageLinkForm';
+export { Input } from './Input/Input';
 export { Logo } from './Logo/Logo';
 export { NavigationItem } from './NavigationItem/NavigationItem';
 export { Rank } from './Rank/Rank';
